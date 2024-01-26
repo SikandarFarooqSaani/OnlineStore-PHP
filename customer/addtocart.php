@@ -1,0 +1,53 @@
+<?php
+	session_start();
+	$_SESSION['dir']='../';
+	include'../include/header.php';
+	include'../include/topnavbar.php';
+	//session_start();
+	// if(!isset($_SESSION['username']))
+	// {
+		// header('location:../index.php');
+	// }
+	// $store_username=$_SESSION['username'];
+	$cart_pro_name='';
+	$pro_id='';
+	$cart_pro_qty='';
+	$cart_pro_price='';
+	$cust_id='';
+	if($_SERVER['REQUEST_METHOD']=='GET')
+	{
+		if(!isset($_GET['pro_id']) )// if product id is not set from get || !isset($_POST['pro_id'])
+		{
+			header('location:productlist.php');
+		}
+		//database connnection
+		include'../include/dbconnection.php';
+		
+		$pro_id=$_GET['pro_id'];
+		//fecthc all data from database of product
+		$query="SELECT pro_name,pro_s_price,pro_qty FROM products WHERE pro_id = $pro_id ";
+		$result=mysqli_query($db_connection,$query);
+		if($result)
+		{
+			$row=mysqli_fetch_assoc($result);
+			//echo 'data fetch from database of product';
+			
+			$cart_pro_name=$row['pro_name'];
+			$cart_pro_price=$row['pro_s_price'];
+			$cart_pro_qty=$row['pro_qty'];
+			
+			$cust_id=$_SESSION['cust_id'];
+			// get if from get request method
+			//get data from database for brand
+			$query="INSERT INTO cart (cart_pro_name,pro_id,cart_pro_qty,cart_pro_price,cust_id) VALUE ('$cart_pro_name','$pro_id','$cart_pro_qty','$cart_pro_price','$cust_id') ";
+			$result=mysqli_query($db_connection,$query);
+			
+			if($result)
+			{
+				echo 'product add to cart';	
+				header('location:cart.php');
+			}
+		}
+	}
+	
+?>

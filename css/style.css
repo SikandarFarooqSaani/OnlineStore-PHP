@@ -1,0 +1,53 @@
+body {
+  background-color: rgb(94, 100, 102);
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+.product{
+  background-color: rgb(244, 240, 238); 
+  display: inline-block;
+  font-size: 16px;
+  padding: 70px;
+  float: left;
+  
+}
+.product h1{
+  color: red;
+  text-align: center;
+}
+.side{
+  background-color: rgb(224, 81, 19); 
+  display: inline-block;
+  font-size: 16px;
+  padding: 20px;
+  float: left;
+  height: 500px;
+}
+.top {
+  background-color: yellow; 
+  list-style-type: none;
+  text-align: center;
+  padding: 0;
+}
+.top a {
+  display: inline-block;
+  font-size: 16px;
+  padding: 20px;
+}
+.footer{
+  background-color: rgb(21, 217, 96); 
+  display: block;
+  font-size: 16px;
+  padding: 50;
+  float: left;
+  width: 100%;
+  
+}
